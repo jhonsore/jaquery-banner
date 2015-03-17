@@ -1,0 +1,13 @@
+/*
+    Tripoli is a generic CSS standard for HTML rendering. 
+    Copyright (C) 2007 David Hellsing
+    
+    http://monc.se/tripoli/
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+*{background:#fff}
+body{font-family:georgia,times,serif;color:black}
+blockquote{font-style:italic;color:black;}
+a:link,a:visited{border-bottom-width:1px;border-bottom-style:solid}

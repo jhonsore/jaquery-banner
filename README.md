@@ -1,2 +1,2 @@
-# jaquery-banner
+# jquery-banner
 Jquery Banner
