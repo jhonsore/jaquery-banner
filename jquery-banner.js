@@ -1,39 +1,3 @@
-/*
-	banner plugin by Backstage Digital
-	
-	
-	//uso 
-	$(function()
-	{	
-		//instanciando o plugin
-		$("#banner").banner({time:1, timeFade:.5, statusTransition:0, overHandler:true, onSlideChange:onSlideChange});
-		
-		//callback quando o banner muda de item
-		function onSlideChange (event){
-			console.log("onSlideChange : "+event.current);
-		}
-		
-		//controle externo do banner
-		$("#previous").click(function(){
-			$("#banner").banner('previousBanner');
-			return false;
-		});
-		$("#next").click(function(){
-			$("#banner").banner('nextBanner');
-			return false;
-		});
-		$("#play").click(function(){
-			$("#banner").banner('playBanner');
-			return false;
-		});
-		$("#stop").click(function(){
-			$("#banner").banner('stopBanner');
-			return false;
-		});
-	});
-
-*/
-
 (function($){	
 	//
 	$.fn.banner = function( method )
@@ -46,6 +10,15 @@
 			overHandler						: false,//	pausar banner ao passar o mouse por cima
 			//métodos
 			onSlideChange					: function(){}
+		};
+		
+		var methods =
+		{
+			init :												function( options ){ 			return this.each(function(){	setConfig(this, options);});},
+			stopBanner :										function( options ){ 			return this.each(function(){	pauseBanner();});},
+			playBanner :										function( options ){ 			return this.each(function(){	playBanner();});},
+			nextBanner :										function( options ){ 			return this.each(function(){	nextBanner();});},
+			previousBanner :									function( options ){ 			return this.each(function(){	previousBanner();});}
 		};
 		
 		var overHandler;
@@ -62,9 +35,8 @@
 		var $btPrevious;
 		var plugin_settings;
 		var plugin_element;
-
-		setConfig(this, method)
-		/*// Method calling logic
+		
+		// Method calling logic
 		if ( methods[method] )//caso exista um método, esse método é chamado
 		{
 			return methods[ method ].apply( this, Array.prototype.slice.call( arguments, 1 ));
@@ -75,22 +47,13 @@
 		}
 		else//caso o método não exista
 		{
-		  $.error( 'Method ' +  method + ' does not exist on jQuery.boilerplate' );
-		} */
-		
-		var methods =
-		{
-			init :												function( options ){ 			return this.each(function(){	setConfig(this, options);});},
-			stopBanner :										function( options ){ 			return this.each(function(){	pauseBanner();});},
-			playBanner :										function( options ){ 			return this.each(function(){	playBanner();});},
-			nextBanner :										function( options ){ 			return this.each(function(){	nextBanner();});},
-			previousBanner :									function( options ){ 			return this.each(function(){	previousBanner();});}
-		};
-	
+		  $.error( 'Method ' +  method + ' does not exist on jQuery.banner' );
+		} 
+			
 		function setConfig($this, options)
 		{
 			plugin_element 						= $($this);
-			plugin_settings 					= $.extend(defaults, options);	
+			plugin_settings 					= $.extend({},defaults, options);	
 						
 			if(plugin_element.size()>0){	init();}
 		}//	fim setConfig
@@ -123,10 +86,9 @@
 			}
 			
 			initNav ();
-			
 			//se a propriedade overHandler for igual a /true/ libera os 
 			//eventos para quando se passar o mouse por cima do banner
-			if(overHandler){
+			if(overHandler && $contentBanner.size()>1){
 				//pausa o banner com o mouse por cima dele
 				$($contentBanner).mouseenter(function(){
 					pauseBanner();
@@ -164,7 +126,6 @@
 		//--------------
 		//	responsável pela mudança dos itens
 		function changeBanner(type) {
-			
 			var _new;
 			var _current = $contentBanner.index($('> .ativo', $containerBanner));
 			var _total = $contentBanner.size();
@@ -286,7 +247,6 @@
 			pauseBanner ();//	remove o timer
 			changeBanner('previous');
 		}
-
    
 	};
 	
