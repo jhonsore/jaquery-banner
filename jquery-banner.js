@@ -91,14 +91,18 @@
 			if(overHandler && $contentBanner.size()>1){
 				//pausa o banner com o mouse por cima dele
 				$($contentBanner).mouseenter(function(){
-					pauseBanner();
-					$(".pause-msg",$containerBanner).fadeIn(400);
+                    if($contentBanner.size()>1) {
+                        pauseBanner();
+                        $(".pause-msg", $containerBanner).fadeIn(400);
+                    }
 				});
 				
 				//inicia o banner ao sair com o mouse sobre ele
 				$($contentBanner).mouseleave(function(){
-					playBanner();
-					$(".pause-msg",$containerBanner).fadeOut(400);
+                    if($contentBanner.size()>1) {
+                        playBanner();
+                        $(".pause-msg", $containerBanner).fadeOut(400);
+                    }
 				});
 			}
 				
