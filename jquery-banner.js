@@ -72,7 +72,7 @@
 			$containerBanner = plugin_element;
 			$contentBanner = $('> .item', $containerBanner);
 			$containerNav = $('.box-nav',$containerBanner);
-			$contentNav = $('a.bullet', $containerNav);
+			$contentNav = $('a.bullet', ".bullets-banner");
 			$btNext = $('.setaDir', $containerNav);
 			$btPrevious = $('.setaEsq', $containerNav);
 			
