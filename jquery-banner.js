@@ -5,6 +5,7 @@
 		//
 		var defaults =
 		{
+			centerNav						: false,//centraliza os bullets
 			time							: 3,
 			timeFade						: .5,
 			overHandler						: false,//	pausar banner ao passar o mouse por cima
@@ -72,7 +73,7 @@
 			$containerBanner = plugin_element;
 			$contentBanner = $('> .item', $containerBanner);
 			$containerNav = $('.box-nav',$containerBanner);
-			$contentNav = $('a.bullet', ".bullets-banner");
+			$contentNav = $('a.bullet', $containerBanner);
 			$btNext = $('.setaDir', $containerNav);
 			$btPrevious = $('.setaEsq', $containerNav);
 			
@@ -103,6 +104,15 @@
                         playBanner();
                         $(".pause-msg", $containerBanner).fadeOut(400);
                     }
+				});
+			}
+			
+			if(plugin_settings.centerNav)
+			{
+				$(".bullets-banner",$containerNav).css({
+					width:$(".bullets-banner",$containerNav).width(),
+					margin: "0 auto",
+					display:'block'
 				});
 			}
 				
