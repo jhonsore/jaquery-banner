@@ -110,7 +110,7 @@
 			if(plugin_settings.centerNav)
 			{
 				$(".bullets-banner",$containerNav).css({
-					width:$(".bullets-banner",$containerNav).width(),
+					width:$(".bullets-banner",$containerNav).outerWidth(true),
 					margin: "0 auto",
 					display:'block'
 				});
