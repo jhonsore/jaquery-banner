@@ -87,7 +87,7 @@
 			}
 
 			initNav ();
-			//se a propriedade overHandler for igual a /true/ libera os
+			//se a propriedade overHandler for igual a /true/ libera os 
 			//eventos para quando se passar o mouse por cima do banner
 			if(overHandler && $contentBanner.size()>1){
 				//pausa o banner com o mouse por cima dele
@@ -109,14 +109,33 @@
 
 			if(plugin_settings.centerNav)
 			{
+				reposBullets ();
+			}
+
+			$(window).resize(resize);
+			resize();
+
+		}//	fim init
+
+		function resize ()
+		{
+			reposBullets ();
+		}
+
+		function reposBullets ()
+		{
+			var _container = $(".bullets-banner",$containerBanner);
+			if(!_container.hasClass("bullet-resized") && _container.width()>0)
+			{
 				$(".bullets-banner",$containerBanner).css({
 					width:$(".bullets-banner",$containerNav).outerWidth(true),
 					margin: "0 auto",
 					display:'block'
 				});
-			}
 
-		}//	fim init
+				_container.addClass("bullet-resized");
+			}
+		}
 
 		//-------------------------------------------------------------------------
 		//-- inicia o banner
