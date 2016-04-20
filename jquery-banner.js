@@ -128,7 +128,7 @@
 			if(!_container.hasClass("bullet-resized") && _container.width()>0)
 			{
 				$(".bullets-banner",$containerBanner).css({
-					width:$(".bullets-banner",$containerNav).outerWidth(true),
+					width:$(".bullets-banner",$containerBanner).outerWidth(true),
 					margin: "0 auto",
 					display:'block'
 				});
