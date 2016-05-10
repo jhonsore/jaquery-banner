@@ -9,6 +9,7 @@
 			time							: 3,
 			timeFade						: .5,
 			overHandler						: false,//	pausar banner ao passar o mouse por cima
+			auto     						: false,
 			//métodos
 			onSlideChange					: function(){}
 		};
@@ -81,7 +82,10 @@
 			setFirstItemAtivo(itemAtivo);
 
 			if($contentBanner.size()>1){
-				autoBanner();
+				if(plugin_settings.auto)
+				{
+					autoBanner();
+				}
 			}else{
 				$containerNav.hide();
 			}
@@ -119,7 +123,10 @@
 
 		function resize ()
 		{
-			reposBullets ();
+			if(plugin_settings.centerNav)
+			{
+				reposBullets ();
+			}
 		}
 
 		function reposBullets ()
@@ -128,7 +135,7 @@
 			if(!_container.hasClass("bullet-resized") && _container.width()>0)
 			{
 				$(".bullets-banner",$containerBanner).css({
-					width:$(".bullets-banner",$containerNav).outerWidth(true),
+					width:$(".bullets-banner",$containerBanner).outerWidth(true),
 					margin: "0 auto",
 					display:'block'
 				});
@@ -197,7 +204,10 @@
 			$contentBanner.eq(n).delay(100).fadeIn(1000 * timeFade,
 				function () {
 					statusTransition = false;
-					autoBanner();
+					if(plugin_settings.auto)
+					{
+						autoBanner();
+					}
 				}
 			);
 		}//	fim bannerTransition
@@ -264,7 +274,10 @@
 		//--------------
 		//	inicia o banner
 		function playBanner () {
-			autoBanner();
+			if(plugin_settings.auto)
+			{
+				autoBanner();
+			}
 		}//	fim playBanner
 
 		//--------------
