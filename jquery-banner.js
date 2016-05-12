@@ -10,6 +10,7 @@
 			timeFade						: .5,
 			overHandler						: false,//	pausar banner ao passar o mouse por cima
 			auto     						: false,
+			centerNavVert					: false,//centraliza os bullets verticalmente
 			//métodos
 			onSlideChange					: function(){}
 		};
@@ -134,11 +135,26 @@
 			var _container = $(".bullets-banner",$containerBanner);
 			if(!_container.hasClass("bullet-resized") && _container.width()>0)
 			{
-				$(".bullets-banner",$containerBanner).css({
-					width:$(".bullets-banner",$containerBanner).outerWidth(true),
-					margin: "0 auto",
-					display:'block'
-				});
+				var _obj;
+				if(plugin_settings.centerNavVert)
+				{
+					var _h = $(".bullets-banner",$containerBanner).outerHeight(true);
+					_obj = {
+						height: _h,
+						marginTop: "-"+(_h/2)+"px",
+						display:'block'
+					};
+				}
+				else
+				{
+					_obj = {
+						width:$(".bullets-banner",$containerBanner).outerWidth(true),
+						margin: "0 auto",
+						display:'block'
+					};
+				}
+
+				$(".bullets-banner",$containerBanner).css(_obj);
 
 				_container.addClass("bullet-resized");
 			}
